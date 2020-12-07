@@ -42,23 +42,19 @@ export const constantRoutes = [
     component: () => import('@/views/404'),
     hidden: true
   },
-  // {
-  //   path: '/dashboard',
-  //   component: () => import('@/')
-  // },
   {
     path: '/',
     component: Layout,
     name: 'Nested',
-    meta: {
-      title: 'Nested'
-    },
+    // meta: {
+    //   title: 'Nested'
+    // },
     children: [
       {
         path: 'menu2',
         component: () => import('@/views/nested/menu2/index'),
         name: 'Menu2',
-        meta: { title: 'menu2' }
+        meta: { title: 'menu2', icon: 'el-icon-house' }
       }
     ]
   },
