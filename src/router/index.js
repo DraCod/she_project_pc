@@ -45,20 +45,24 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    name: 'Nested',
-    // meta: {
-    //   title: 'Nested'
-    // },
+    meta: {
+      title: '商品'
+    },
     children: [
       {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2', icon: 'el-icon-house' }
+        path: 'classify',
+        component: () => import('@/views/classify/index'),
+        name: 'classify',
+        meta: { title: '商品分类', icon: '' }
+      },
+      {
+        path: 'good',
+        component: () => import('@/views/good/index.vue'),
+        name: 'good',
+        meta: { title: '商品管理', icon: '' }
       }
     ]
   },
-  // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
 

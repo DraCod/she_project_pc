@@ -38,12 +38,17 @@ service.interceptors.response.use(
         type: 'error',
         duration: 5 * 1000
       })
-      return res
+      return Promise.reject(res)
     } else {
       return res
     }
   },
   error => {
+    Message({
+      message: error,
+      type: 'error',
+      duration: 5 * 1000
+    })
     console.log('err' + error) // for debug
     return Promise.reject(error)
   }
