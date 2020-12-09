@@ -1,5 +1,5 @@
 <template>
-  <el-dialog title="新增" :visible.sync="dialog" width="30%">
+  <el-dialog :title="edit?'修改':'新增'" :visible.sync="dialog" width="30%">
     <el-form ref="form" :model="form" :rules="rules" label-width="80px">
       <el-form-item label="分类名称" prop="classify">
         <el-input v-model="form.classify" />
