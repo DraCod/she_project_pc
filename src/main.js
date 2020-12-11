@@ -34,6 +34,7 @@ Vue.use(ElementUI, { locale })
 // Vue.use(ElementUI)
 
 Vue.config.productionTip = false
+Vue.prototype.$url = process.env.VUE_APP_BASE_API
 
 new Vue({
   el: '#app',

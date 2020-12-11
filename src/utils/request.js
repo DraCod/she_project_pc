@@ -36,7 +36,7 @@ service.interceptors.response.use(
       Message({
         message: res.msg,
         type: 'error',
-        duration: 5 * 1000
+        duration: 3 * 1000
       })
       return Promise.reject(res)
     } else {
@@ -47,7 +47,7 @@ service.interceptors.response.use(
     Message({
       message: error,
       type: 'error',
-      duration: 5 * 1000
+      duration: 3 * 1000
     })
     console.log('err' + error) // for debug
     return Promise.reject(error)
