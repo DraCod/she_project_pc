@@ -59,6 +59,7 @@
 </template>
 
 <script>
+import router from '@/router'
 // import { validUsername } from '@/utils/validate'
 
 export default {
@@ -95,6 +96,7 @@ export default {
   watch: {
     $route: {
       handler: function(route) {
+        console.log(route)
         this.redirect = route.query && route.query.redirect
       },
       immediate: true
@@ -116,7 +118,8 @@ export default {
         if (valid) {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm).then(() => {
-            this.$router.push({ path: this.redirect || '/' })
+            // console.log(this.redirect)
+            this.$router.push({ path: '/goods/classify' })
             this.loading = false
           }).catch(() => {
             this.loading = false

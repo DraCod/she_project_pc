@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function login(data) {
+export function login(data) {//登录
   return request({
     url: '/pc/login',
     method: 'post',
@@ -8,16 +8,24 @@ export function login(data) {
   })
 }
 
-export function getInfo() {
+export function getInfo() {//获取用户信息
   return request({
     url: '/pc/get-user-info',
     method: 'get'
   })
 }
 
-export function logout() {
+export function logout() { //推出登录
   return request({
     url: '/vue-admin-template/user/logout',
     method: 'post'
+  })
+}
+
+
+export function userList(){
+  return request({
+    url:'/pc/user-list',
+    method:'get'
   })
 }
