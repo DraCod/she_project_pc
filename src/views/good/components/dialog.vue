@@ -10,6 +10,9 @@
       <el-form-item label="商品名称" prop="goods">
         <el-input v-model="form.goods" class="is-width"></el-input>
       </el-form-item>
+      <el-form-item label="价格" prop="price">
+        <el-input v-model.number="form.price" class="is-width"></el-input>
+      </el-form-item>
       <el-form-item label="分类" prop="class_id">
         <el-select v-model="form.class_id" placeholder="请选择" class="is-width">
           <el-option
@@ -65,6 +68,7 @@ export default {
       dialog: false,
       form: {
         goods: "",
+        price:0,
         class_id: "", //分类id
         main_url: "", //主图路径
         main_id: "", //主图id
@@ -74,6 +78,7 @@ export default {
       },
       rules: {
         goods: [{ required: true, message: "商品名称不能为空", trigger: "blur" }],
+        price: [{ required: true, message: "分类不能为空", trigger: "blur" }],
         class_id: [{ required: true, message: "分类不能为空", trigger: "blur" }],
         main_id: [{ required: true, message: "主图不能为空", trigger: "change" }],
         path_arr: [{ required: true, validator: this.pathPass, trigger: "change" }],
@@ -121,6 +126,7 @@ export default {
       form.main_url = this.$url + goods.main.path;
       form.main_id = goods.main.id;
       form.total = goods.total;
+      form.price = goods.price;
       await getImg({ img: goods.path_id }).then((res) => {
         form.path_arr = res.data.map((ro) => ({ id: ro.id, url: this.$url + ro.path }));
         form.path_arr.push("");
@@ -175,6 +181,7 @@ export default {
     dialog(val) {
       this.$emit("input", val);
       if (val) {
+        this.$refs['ruleForm'].resetFields();
         if (this.edit) {
           this.edit_init();
         } else {

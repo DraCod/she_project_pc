@@ -38,10 +38,10 @@ export const constantRoutes = [
     ]
   },
   {
-    path:'/user',
-    component:Layout,
-    meta:{
-      title:'用户',
+    path: '/user',
+    component: Layout,
+    meta: {
+      title: '用户',
     },
     children: [
       {
@@ -50,6 +50,21 @@ export const constantRoutes = [
         name: 'list',
         meta: { title: '用户列表', icon: '' }
       },
+    ]
+  },
+  {
+    path: '/order',
+    component: Layout,
+    meta: {
+      title: '订单'
+    },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/order/index'),
+        name: 'order-list',
+        meta: { title: '订单列表', icon: '' }
+      }
     ]
   },
 

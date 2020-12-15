@@ -1,9 +1,13 @@
 <template>
-  <div>
+  <div class="page">
     <el-table :data="list" style="width: 100%">
-      <el-table-column prop="id" label="id"> </el-table-column>
-      <el-table-column prop="userName" label="用户名">
+      <el-table-column prop="id" label="id" width="150"> </el-table-column>
+      <el-table-column label="头像" width="200">
+        <template slot-scope="scope">
+          <img :src="scope.row.avatarUrl" alt="">
+        </template>
       </el-table-column>
+      <el-table-column prop="userName" label="用户名"></el-table-column>
       <el-table-column prop="openId" label="openid"> </el-table-column>
       <el-table-column prop="openId" label="创建时间">
         <template slot-scope="scope">

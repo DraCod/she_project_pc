@@ -3,6 +3,7 @@
         <el-button @click="add" size="small" type="primary">新增</el-button>
         <el-table :data="list" style="width: 100%" v-loading="loading">
             <el-table-column prop="id" label="id"/>
+            <el-table-column prop="price" label="价格"/>
             <el-table-column label="商品主图">
                 <template slot-scope="scope">
                     <img :src="$url+scope.row.main.path" height="100" alt="">
