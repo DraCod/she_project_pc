@@ -4,19 +4,28 @@
         :visible.sync="dialog"
         width="500px"
         :before-close="handleClose">
-        <span>这是一段内容</span>
+        <el-steps :active="active" finish-status="success">
+            <el-step title="待付款"></el-step>
+            <el-step title="等待发货"></el-step>
+            <el-step title="已发货"></el-step>
+            <el-step title="待评价"></el-step>
+            <el-step title="交易完成"></el-step>
+        </el-steps>
         <span slot="footer" class="dialog-footer">
             <el-button @click="dialog = false">取 消</el-button>
-            <el-button type="primary" @click="dialog = false">确 定</el-button>
+            <el-button type="primary" @click="next">下一步</el-button>
         </span>
     </el-dialog>
 
 </template>
 
 <script>
+import {eidtOrder} from '@/api/order';
 export default {
     props:{
-        value:{}
+        value:{},
+        active:{},
+        id:{},
     },
     data(){
         return{
@@ -24,13 +33,26 @@ export default {
         }
     },
     methods: {
-      handleClose(done) {
-        this.$confirm('确认关闭？')
-          .then(_ => {
-            done();
-          })
-          .catch(_ => {});
-      }
+        next(){
+            eidtOrder({
+                id:this.id,
+                status:this.active+1
+            }).then(res=>{
+                this.$message({
+                    type:'success',
+                    message:res.meg
+                })
+                this.dialog=false;
+                this.$emit('init')
+            })
+        },
+        handleClose(done) {
+            this.$confirm('确认关闭？')
+            .then(_ => {
+                done();
+            })
+            .catch(_ => {});
+        }
     },
     watch:{
         value(val){

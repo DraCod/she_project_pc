@@ -10,3 +10,12 @@ export function orderList(data){
         method:'get'
     })
 }
+
+
+export function eidtOrder(data){
+    return request({
+        url:'/mb/edit-order',
+        method:'post',
+        data
+    })
+}

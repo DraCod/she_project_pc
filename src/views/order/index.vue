@@ -9,7 +9,7 @@
                 订单状态：
                 <el-select v-model="form.status" size="small" placeholder="请选择订单状态" clearable>
                     <el-option 
-                        v-for="(item,index) in status_list" 
+                        v-for="(item,index) in status_list"
                         :key="index"
                         :label="item.label" 
                         :value="item.value">
@@ -32,6 +32,17 @@
                 </template>
             </el-table-column>
             <el-table-column prop="orderNum" label="订单号"/>
+            <el-table-column prop="orderNum" label="订单状态">
+                <template slot-scope="scope">
+                    <div>
+                        <span v-if="scope.row.status==1">待付款</span>
+                        <span v-if="scope.row.status==2">等待发货</span>
+                        <span v-if="scope.row.status==3">已发货</span>
+                        <span v-if="scope.row.status==4">待评价</span>
+                        <span v-if="scope.row.status==5">交易完成</span>
+                    </div>
+                </template>
+            </el-table-column>
             <el-table-column label="创建时间">
                 <template slot-scope="scope">
                     {{scope.row.createdAt|getTime}}
@@ -39,11 +50,11 @@
             </el-table-column>
             <el-table-column label="操作">
                 <template slot-scope="scope">
-                    <el-button size="small" @click="operation(scope.row)">操作</el-button>
+                    <el-button size="small" v-if='scope.row.status<5' @click="operation(scope.row)">操作</el-button>
                 </template>
             </el-table-column>
         </el-table>
-        <operation v-model="dialog">
+        <operation v-model="dialog" :active="active" :id="id" @init="search">
         </operation>
     </div>
 </template>
@@ -87,6 +98,8 @@ export default {
             data_list:[],
             loading:false,
             dialog:false,
+            id:'',
+            active:false,
         }
     },
     mounted(){
@@ -95,6 +108,8 @@ export default {
     methods:{
         operation(row){
             this.dialog=true;
+            this.active=row.status;
+            this.id=row.id;
         },
         search(){
             this.loading = true
