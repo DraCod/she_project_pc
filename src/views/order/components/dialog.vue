@@ -40,7 +40,7 @@ export default {
             }).then(res=>{
                 this.$message({
                     type:'success',
-                    message:res.meg
+                    message:res.msg
                 })
                 this.dialog=false;
                 this.$emit('init')
