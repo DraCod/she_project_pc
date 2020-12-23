@@ -29,3 +29,11 @@ export function userList(){
     method:'get'
   })
 }
+
+export function giveWallet(data){
+  return request({
+    url:'/pc/give-wallet',
+    method:'post',
+    data
+  })
+}
