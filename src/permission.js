@@ -21,9 +21,9 @@ router.beforeEach(async(to, from, next) => {
   const hasToken = getToken()
 
   if (hasToken) {
-    if (to.path === '/login') {
+    if (to.path === '/') {
       // if is logged in, redirect to the home page
-      next({ path: '/' })
+      next({ path: '/goods/classify' })
       NProgress.done()
     } else {
       const hasGetUserInfo = store.getters.name

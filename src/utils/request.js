@@ -26,12 +26,12 @@ service.interceptors.response.use(
   response => {
     const res = response.data
     if (res.status === 401) {
-      // router.replace('/login')
-      // Message({
-      //   message: '请先登录',
-      //   type: 'info',
-      //   duration: 5 * 1000
-      // })
+      router.replace('/login')
+      Message({
+        message: '请先登录',
+        type: 'info',
+        duration: 5 * 1000
+      })
     } else if (res.status === 402) {
       Message({
         message: res.msg,

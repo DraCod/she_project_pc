@@ -24,6 +24,9 @@
           </el-option>
         </el-select>
       </el-form-item>
+       <el-form-item label="首页推荐">
+        <el-switch v-model="recommend"></el-switch>
+      </el-form-item>
       <el-form-item label="主图" prop="main_id">
         <upload-img :src="form.main_url" @upload="upload('main', $event)"></upload-img>
       </el-form-item>
@@ -75,6 +78,7 @@ export default {
         path_arr: [""], //附图数组
         detail_arr: [""], //详情图数组
         total: 0, //总数
+        recommend:0
       },
       rules: {
         goods: [{ required: true, message: "商品名称不能为空", trigger: "blur" }],
@@ -127,11 +131,12 @@ export default {
       form.main_id = goods.main.id;
       form.total = goods.total;
       form.price = goods.price;
-      await getImg({ img: goods.path_id }).then((res) => {
+      form.recommend = goods.recommend
+      await getImg({ img: goods.pathId }).then((res) => {
         form.path_arr = res.data.map((ro) => ({ id: ro.id, url: this.$url + ro.path }));
         form.path_arr.push("");
       });
-      await getImg({ img: goods.detail_id }).then((res) => {
+      await getImg({ img: goods.detailId }).then((res) => {
         form.detail_arr = res.data.map((ro) => ({ id: ro.id, url: this.$url + ro.path }));
         form.detail_arr.push("");
       });
@@ -181,24 +186,38 @@ export default {
     dialog(val) {
       this.$emit("input", val);
       if (val) {
-        this.$refs['ruleForm'].resetFields();
+        this.$nextTick(()=>{
+          this.$refs['ruleForm'].resetFields();
+        })
         if (this.edit) {
           this.edit_init();
         } else {
           this.$nextTick(() => {
             this.form = {
-              goods: "",
-              class_id: "", //分类id
-              main_url: "", //主图路径
-              main_id: "", //主图id
-              path_arr: [""], //附图数组
-              detail_arr: [""], //详情图数组
-              total: 0, //总数
+                goods: "",
+                price:0,
+                class_id: "", //分类id
+                main_url: "", //主图路径
+                main_id: "", //主图id
+                path_arr: [""], //附图数组
+                detail_arr: [""], //详情图数组
+                total: 0, //总数
+                recommend:0
             };
           });
         }
       }
     },
+  },
+  computed:{
+    recommend:{
+      get(){
+        return this.form.recommend == 1
+      },
+      set(val){
+        this.form.recommend = val?1:0
+      }
+    }
   },
   components: {
     uploadImg: require("./upload-img.vue").default,

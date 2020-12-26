@@ -67,8 +67,24 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path:'/avert',
+    component: Layout,
+    meta: {
+      title: '广告'
+    },
+    children:[
+      {
+        path:'index',
+        component: ()=>import('@/views/advert/index'),
+        name: 'acert-list',
+        meta: {title: '广告', icon:''}
+      }
+    ]
+    // component: ()=>import('@/views/advert/advert')
+  }
 
-  { path: '*', redirect: '/404', hidden: true }
+  // { path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () => new Router({
