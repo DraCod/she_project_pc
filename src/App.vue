@@ -17,5 +17,6 @@ export default {
 }
 .shadow{
   box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 12px 0px;
+  margin: 15px 0;
 }
 </style>
