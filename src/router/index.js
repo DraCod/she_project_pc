@@ -81,7 +81,34 @@ export const constantRoutes = [
         meta: {title: '广告', icon:''}
       }
     ]
-    // component: ()=>import('@/views/advert/advert')
+  },
+  {
+    path:'/feedback-list',
+    component:Layout,
+    meta:{
+      title:'反馈'
+    },
+    children:[
+      {
+        path:'index',
+        component:()=>import('@/views/feedback/index'),
+        meta: {title: '反馈列表', icon:''}
+      }
+    ]
+  },
+  {
+    path:'/about',
+    component:Layout,
+    meta:{
+      title:'关于我们'
+    },
+    children:[
+      {
+        path:'index',
+        component:()=>import('@/views/about/index'),
+        meta: {title: '关于我们', icon:''}
+      }
+    ]
   }
 
   // { path: '*', redirect: '/404', hidden: true }
