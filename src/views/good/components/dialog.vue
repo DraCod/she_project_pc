@@ -201,7 +201,7 @@ export default {
                 main_id: "", //主图id
                 path_arr: [""], //附图数组
                 detail_arr: [""], //详情图数组
-                total: 0, //总数
+                total: 999, //总数
                 recommend:0
             };
           });
