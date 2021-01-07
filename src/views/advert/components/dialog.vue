@@ -81,7 +81,9 @@ export default {
         value(val){
             this.dialog = val;
             if(this.val){
-                this.$refs['ruleForm'].resetFields();
+                this.$nextTick(()=>{
+                    this.$refs['ruleForm'].resetFields();
+                })
             }
         },
         dialog(val){
