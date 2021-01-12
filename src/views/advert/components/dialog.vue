@@ -81,9 +81,11 @@ export default {
         value(val){
             this.dialog = val;
             if(this.val){
-                this.$nextTick(()=>{
-                    this.$refs['ruleForm'].resetFields();
-                })
+                this.form={
+                    type:1,
+                    img:''
+                }
+                this.imageUrl=''
             }
         },
         dialog(val){

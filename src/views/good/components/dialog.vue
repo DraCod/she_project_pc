@@ -11,7 +11,7 @@
         <el-input v-model="form.goods" class="is-width"></el-input>
       </el-form-item>
       <el-form-item label="价格" prop="price">
-        <el-input v-model.number="form.price" class="is-width"></el-input>
+        <el-input v-model="form.price" class="is-width"></el-input>
       </el-form-item>
       <el-form-item label="分类" prop="class_id">
         <el-select v-model="form.class_id" placeholder="请选择" class="is-width">
